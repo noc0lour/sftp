@@ -1,8 +1,4 @@
-# Supported tags and respective `Dockerfile` links
-
-- [`debian-jessie`, `debian`, `latest` (*Dockerfile*)](https://github.com/atmoz/sftp/blob/master/Dockerfile) [![](https://images.microbadger.com/badges/image/atmoz/sftp.svg)](http://microbadger.com/images/atmoz/sftp "Get your own image badge on microbadger.com")
-- [`alpine-3.4` (*Dockerfile*)](https://github.com/atmoz/sftp/blob/alpine-3.4/Dockerfile) [![](https://images.microbadger.com/badges/image/atmoz/sftp:alpine-3.4.svg)](http://microbadger.com/images/atmoz/sftp:alpine-3.4 "Get your own image badge on microbadger.com")
-- [`alpine-3.5`, `alpine` (*Dockerfile*)](https://github.com/atmoz/sftp/blob/alpine/Dockerfile) [![](https://images.microbadger.com/badges/image/atmoz/sftp:alpine.svg)](http://microbadger.com/images/atmoz/sftp:alpine "Get your own image badge on microbadger.com")
+Easy to use SCP/SFTP/RSYNC server with OpenSSH using rssh to limit user to these services.
 
 # Securely share your files
 
@@ -15,14 +11,9 @@ This is an automated build linked with the [debian](https://hub.docker.com/_/deb
   (syntax: `user:pass[:e][:uid[:gid[:dir1[,dir2]...]]]...`).
   - Set UID/GID manually for your users if you want them to make changes to
     your mounted volumes with permissions matching your host filesystem.
-  - Add directory names at the end, if you want to create them and/or set user
-    ownership. Perfect when you just want a fast way to upload something without
-    mounting any directories, or you want to make sure a directory is owned by
-    a user (chown -R).
-- Mount volumes in user's home directory.
-  - The users are chrooted to their home directory, so you must mount the
-    volumes in separate directories inside the user's home directory
-    (/home/user/**mounted-directory**).
+- Mount volumes in user's home folder.
+  - You must mount volumes in separate directories inside the user's home
+    directory (/home/user/**mounted-directory**).
 
 # Examples
 
@@ -93,8 +84,8 @@ docker run \
     'foo:$1$0G2g0GSt$ewU0t6GXG15.0hWoOX8X9.:e:1001'
 ```
 
-Tip: you can use [atmoz/makepasswd](https://hub.docker.com/r/atmoz/makepasswd/) to generate encrypted passwords:  
-`echo -n "your-password" | docker run -i --rm atmoz/makepasswd --crypt-md5 --clearfrom=-`
+Tip: you can use makepasswd to generate encrypted passwords:
+`echo -n "password" | makepasswd --crypt-md5 --clearfrom -`
 
 ## Using SSH key (and no password)
 
