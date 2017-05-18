@@ -80,7 +80,7 @@ function createUser() {
     chmod 711 /home/$user
 
     # Add rssh entry
-    echo "user=$user:022:100110" >> /etc/rssh.conf
+    echo "user=$user:022:10011" >> /etc/rssh.conf
 
     if [ -n "$pass" ]; then
         echo "$user:$pass" | chpasswd $chpasswdOptions
